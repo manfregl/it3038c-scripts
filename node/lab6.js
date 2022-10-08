@@ -11,6 +11,10 @@ http.createServer((req, res) => {
     });
   } else if(req.url.match("/sysinfo")) {
     myHostName=os.hostname();
+    var Days = Math.floor (os.uptime() / 86400);
+    var totalmem = Math.floor (os.totalmem / 1000);
+    var freemem = Math.floor (os.freemem / 1000);
+    var CPU = os.cpus().length
     html=`
     <!DOCTYPE html>
     <html>
@@ -22,10 +26,10 @@ http.createServer((req, res) => {
 	<p><a href='/sysinfo'> Get info about the system</a></p>
         <p>Hostname: ${myHostName}</p>
         <p>IP: ${ip.address()}</p>
-        <p>Server Uptime: </p>
-        <p>Total Memory: </p>
-        <p>Free Memory: </p>
-        <p>Number of CPUs: </p>
+        <p>Server Uptime: ${Days} days</p>
+        <p>Total Memory: ${totalmem} mb</p>
+        <p>Free Memory: ${freemem} mb</p>
+        <p>Number of CPUs: ${CPU} </p>
       </body>
     </html>`
     res.writeHead(200, {"Content-Type": "text/html"});
