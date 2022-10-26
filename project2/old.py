@@ -1,7 +1,7 @@
 import datetime
 while True:
     try:
-        bday = input("Please enter your exact Date of Birth(eg. March 6 2004):")
+        bday = input("Hello, please enter your Date of Birth(ex. August 22 2000): ")
         birthday = datetime.datetime.strptime(bday, '%B %d %Y')
         break
     except:
